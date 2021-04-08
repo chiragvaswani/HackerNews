@@ -1,8 +1,7 @@
 const postsContainer = document.getElementById("posts-container");
 const loading = document.querySelector(".loader");
 const filter = document.getElementById("filter");
-
-let limit = 5;
+let renderInfinite = true;
 let page = 1;
 
 // Fetch posts from API
@@ -20,6 +19,7 @@ async function getPosts() {
 
 // Show posts in DOM
 async function showPosts() {
+  if (!renderInfinite) return;
   const posts = await getPosts();
   const { hits } = posts;
   console.log(posts);
@@ -57,6 +57,7 @@ function showLoading() {
 
 // Filter posts by input
 function filterPosts(e) {
+  renderInfinite = false;
   const term = e.target.value.toUpperCase();
   const posts = document.querySelectorAll(".post");
 
