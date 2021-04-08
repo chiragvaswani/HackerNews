@@ -11,9 +11,7 @@ async function getPosts() {
   //   `https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`
   // );
 
-  const res = await fetch(
-    "https://hn.algolia.com/api/v1/search?tags=front_page"
-  );
+  const res = await fetch(`https://hn.algolia.com/api/v1/search?page=${page}`);
 
   const data = await res.json();
 
@@ -24,18 +22,21 @@ async function getPosts() {
 async function showPosts() {
   const posts = await getPosts();
   const { hits } = posts;
-  console.log(hits);
+  console.log(posts);
+  let count = 0;
   hits.forEach((post) => {
+    console.log(post.created_at);
     const postEl = document.createElement("div");
     postEl.classList.add("post");
     postEl.innerHTML = `
-      <div class="number">${post}</div>
+    <a target="_blank" href=${post.url}>
+      <div class="number">${post.points}</div>
       <div class="post-info">
-        <h2 class="post-title">${post}</h2>
-        <p class="post-body">${post}</p>
+        <h2 class="post-title">${post.title}</h2>
+        <p class="post-body">${post.author}</p>
       </div>
     `;
-
+    count++;
     postsContainer.appendChild(postEl);
   });
 }
