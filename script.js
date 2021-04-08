@@ -7,8 +7,12 @@ let page = 1;
 
 // Fetch posts from API
 async function getPosts() {
+  // const res = await fetch(
+  //   `https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`
+  // );
+
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`
+    "https://hn.algolia.com/api/v1/search?tags=front_page"
   );
 
   const data = await res.json();
@@ -19,15 +23,16 @@ async function getPosts() {
 // Show posts in DOM
 async function showPosts() {
   const posts = await getPosts();
-
-  posts.forEach((post) => {
+  const { hits } = posts;
+  console.log(hits);
+  hits.forEach((post) => {
     const postEl = document.createElement("div");
     postEl.classList.add("post");
     postEl.innerHTML = `
-      <div class="number">${post.id}</div>
+      <div class="number">${post}</div>
       <div class="post-info">
-        <h2 class="post-title">${post.title}</h2>
-        <p class="post-body">${post.body}</p>
+        <h2 class="post-title">${post}</h2>
+        <p class="post-body">${post}</p>
       </div>
     `;
 
