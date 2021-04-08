@@ -20,12 +20,12 @@ async function getPosts() {
 // Show posts in DOM
 async function showPosts() {
   if (!renderInfinite) return;
+  console.log("showPosts - ", renderInfinite);
   const posts = await getPosts();
   const { hits } = posts;
   console.log(posts);
   let count = 0;
   hits.forEach((post) => {
-    console.log(post.created_at);
     const postEl = document.createElement("div");
     postEl.classList.add("post");
     postEl.innerHTML = `
@@ -43,6 +43,7 @@ async function showPosts() {
 
 // Show loader & fetch more posts
 function showLoading() {
+  if (!renderInfinite) return;
   loading.classList.add("show");
 
   setTimeout(() => {
@@ -57,8 +58,10 @@ function showLoading() {
 
 // Filter posts by input
 function filterPosts(e) {
-  renderInfinite = false;
+  console.log(renderInfinite);
   const term = e.target.value.toUpperCase();
+  if (e.target.value === "") renderInfinite = true;
+  else renderInfinite = false;
   const posts = document.querySelectorAll(".post");
 
   posts.forEach((post) => {
@@ -85,3 +88,7 @@ window.addEventListener("scroll", () => {
 });
 
 filter.addEventListener("input", filterPosts);
+filter.addEventListener("blur", () => {
+  renderInfinite = true;
+  console.log("renderInfinite", renderInfinite);
+});
