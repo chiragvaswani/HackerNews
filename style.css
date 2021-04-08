@@ -123,6 +123,6 @@ a {
 }
 
 .post:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
 }
