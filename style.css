@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #296ca8;
+  background-color: #26282b;
   color: #fff;
   font-family: "Roboto", sans-serif;
   display: flex;
@@ -23,6 +23,7 @@ h1 {
   text-align: center;
   font-family: "Bebas Neue", cursive;
   font-size: 5rem;
+  color: #b9d2d2;
 }
 
 .filter-container {
@@ -40,7 +41,7 @@ h1 {
 
 .post {
   position: relative;
-  background-color: #4992d3;
+  background-color: #353941;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   padding: 20px;
@@ -52,7 +53,7 @@ h1 {
 
 .post .post-title {
   margin: 0;
-  color: white;
+  color: #dbd8e3;
 }
 
 .post .post-body {
