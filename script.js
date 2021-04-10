@@ -10,7 +10,9 @@ async function getPosts() {
   //   `https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`
   // );
 
-  const res = await fetch(`https://hn.algolia.com/api/v1/search?page=${page}`);
+  const res = await fetch(
+    `https://hn.algolia.com/api/v1/search_by_date?page=${page}&tags=story`
+  );
 
   const data = await res.json();
 
