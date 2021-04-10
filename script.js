@@ -11,7 +11,7 @@ async function getPosts() {
   // );
 
   const res = await fetch(
-    `https://hn.algolia.com/api/v1/search_by_date?page=${page}&tags=story`
+    `https://hn.algolia.com/api/v1/search?page=${page}&tags=story`
   );
 
   const data = await res.json();
